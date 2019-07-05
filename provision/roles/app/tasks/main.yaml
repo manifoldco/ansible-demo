@@ -1,0 +1,31 @@
+---
+- name: update apt cache if needed
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: install pip
+  apt:
+    name: "python3-pip"
+    state: latest
+
+- name: install pip deps
+  pip:
+    requirements: /usr/src/app/requirements.txt
+
+- name: install app systemd
+  template:
+    src: app.service.j2
+    dest: /etc/systemd/system/app.service
+
+- name: fetch credentials
+  set_fact:
+    manifold_secrets: "{{ lookup('manifold', 'ansible-demo-logging', project='ansible-demo') }}"
+
+- name: configure systemd env
+  template:
+    src: app.env.j2
+    dest: /etc/systemd/system/app.env
+  with_dict:
+    - "{{ manifold_secrets }}"
+
+- name: start app
+  systemd: state=restarted name=app daemon_reload=yes

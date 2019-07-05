@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+#
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/disco64"
+  config.ssh.insert_key = false
+
+  config.vm.provider :virtualbox do |v|
+    v.name = "vagrant_host"
+    v.memory = 512
+    v.cpus = 1
+  end
+
+  config.vm.hostname = "local"
+  config.vm.network :private_network, ip: "192.168.33.27"
+  config.vm.synced_folder "../app", "/usr/src/app"
+
+  config.vm.define :ansible_manifold do |vagrant|
+  end
+
+  # Ansible provisioner.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "main.yaml"
+    ansible.become = true
+  end
+
+end

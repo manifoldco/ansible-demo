@@ -1,0 +1,11 @@
+[Unit]
+Description=Manifold Ansible Demo App
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/src/app/main.py
+EnvironmentFile=/etc/systemd/system/app.env
+
+[Install]
+WantedBy=multi-user.target
