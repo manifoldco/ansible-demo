@@ -18,4 +18,4 @@ To run the demo:
 1. Export `MANIFOLD_API_TOKEN=<your-api-token>`
 1. From `./provision` run `vagrant up`
 
-See also the [Manifold Ansible integration documentation](tbd).
+See also the [Manifold Ansible integration documentation](https://docs.manifold.co/docs/ansible-7M5ykOXGl2Js9b5r0H3cjg).
