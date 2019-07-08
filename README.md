@@ -1,7 +1,7 @@
 # Manifold Ansible Demo
 
 This repo houses code used in the [Manifold Ansible Integration blog
-post](link-tbd). It’s set up to provision a simple Python application which
+post](https://www.manifold.co/blog/ansible-manifold-integration). It’s set up to provision a simple Python application which
 pushes logs to LogDNA.  Credentials necessary to authenticate with LogDNA are
 fetched from Manifold using the [Ansible Manifold Lookup
 plugin](https://docs.ansible.com/ansible/latest/plugins/lookup/manifold.html).
